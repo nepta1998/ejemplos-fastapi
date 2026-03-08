@@ -2,7 +2,7 @@
 
 ## Índice
 
-1. [Login con JWT](#login-con-jwt)
+1. [Login con fastapi_login](https://github.com/nepta1998/ejemplos-fastapi/tree/main/login)
 
 ---
 
