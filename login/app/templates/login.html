@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar sesión{% endblock %}
+{% block heading %}Iniciar sesión{% endblock %}
+
+{% block content %}
+<form method="post" action="/login" class="form">
+  <label>Correo</label>
+  <input type="email" name="email" required placeholder="tu@email.com" />
+
+  <label>Contraseña</label>
+  <input type="password" name="password" required placeholder="********" />
+
+  <button type="submit">Entrar</button>
+</form>
+
+<p class="muted">¿No tienes cuenta? <a href="/register">Crear usuario</a></p>
+{% endblock %}

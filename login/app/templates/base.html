@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Demo Login{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='styles.css') }}" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="card">
+        <h1 class="title">{% block heading %}Demo Login{% endblock %}</h1>
+        {% if message %}
+        <div class="alert {{ kind or 'info' }}">{{ message }}</div>
+        {% endif %}
+        {% block content %}{% endblock %}
+      </section>
+    </main>
+  </body>
+</html>
