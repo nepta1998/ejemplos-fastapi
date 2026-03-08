@@ -49,4 +49,4 @@ Los usuarios se guardan **solo en memoria**. Si reinicias la app, se pierden.
 
 ## Librería usada para login
 
-- [fastapi-login]("https://fastapi-login.readthedocs.io/")
+- [fastapi-login](https://fastapi-login.readthedocs.io/)
