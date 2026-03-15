@@ -52,8 +52,3 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         await manager.broadcast("🔴 Un usuario salió del chat")
-
-
-@router.get("/health")
-def health():
-    return {"status": "ok"}

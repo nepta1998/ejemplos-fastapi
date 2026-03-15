@@ -16,4 +16,3 @@ Luego abre:
 
 - `GET /chat` página del chat
 - `WS /chat/ws` websocket del chat
-- `GET /health` salud
