@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Chat WebSocket{% endblock %}
+
+{% block heading %}Chat en tiempo real{% endblock %}
+
+{% block content %}
+<p class="muted">Estado: <span id="status">Conectando...</span></p>
+<div class="chat">
+  <ul id="messages" class="messages"></ul>
+  <form id="chat-form" class="form">
+    <label for="messageText">Mensaje</label>
+    <input id="messageText" type="text" placeholder="Escribe tu mensaje" autocomplete="off" />
+    <button type="submit">Enviar</button>
+  </form>
+</div>
+
+<script>
+  const statusEl = document.getElementById("status");
+  const messagesEl = document.getElementById("messages");
+  const formEl = document.getElementById("chat-form");
+  const inputEl = document.getElementById("messageText");
+
+  const scheme = window.location.protocol === "https:" ? "wss" : "ws";
+  const socket = new WebSocket(`${scheme}://${window.location.host}/chat/ws`);
+
+  function addMessage(text) {
+    const li = document.createElement("li");
+    li.textContent = text;
+    messagesEl.appendChild(li);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  socket.addEventListener("open", () => {
+    statusEl.textContent = "Conectado";
+  });
+
+  socket.addEventListener("close", () => {
+    statusEl.textContent = "Desconectado";
+  });
+
+  socket.addEventListener("message", (event) => {
+    addMessage(event.data);
+  });
+
+  formEl.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = inputEl.value.trim();
+    if (!value) {
+      return;
+    }
+    socket.send(value);
+    inputEl.value = "";
+    inputEl.focus();
+  });
+</script>
+{% endblock %}
